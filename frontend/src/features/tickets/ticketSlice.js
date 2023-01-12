@@ -69,6 +69,7 @@ export const getTicket = createAsyncThunk(
     }
   }
 )
+
 // Close ticket
 export const closeTicket = createAsyncThunk(
   'ticket/close',
