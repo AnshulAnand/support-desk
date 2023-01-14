@@ -4,7 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import Modal from 'react-modal'
 import { getTicket, reset, closeTicket } from '../features/tickets/ticketSlice'
-import { getNote, reset as notesReset } from '../features/tickets/noteSlice'
+import {
+  getNotes,
+  createNote,
+  reset as notesReset,
+} from '../features/tickets/noteSlice'
 import BackButton from '../components/BackButton'
 import NoteItem from '../components/NoteItem'
 import Spinner from '../components/Spinner'
@@ -44,7 +48,7 @@ function Ticket() {
       toast.error(message)
     }
     dispatch(getTicket(ticketId))
-    dispatch(getNote(ticketId))
+    dispatch(getNotes(ticketId))
   }, [isError, message, ticketId])
 
   const onTicketClose = () => {
@@ -62,6 +66,8 @@ function Ticket() {
 
   const onNoteSubmit = e => {
     e.preventDefault()
+    dispatch(createNote({ noteText, ticketId }))
+    closeModal()
   }
 
   if (isLoading || notesIsLoading) return <Spinner />
