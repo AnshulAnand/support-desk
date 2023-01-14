@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node backend/server.js",
     "client": "npm start --prefix frontend",
+    "clientInstall": "npm install --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "render-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "server": "nodemon backend/server.js"
   },
   "author": "Anshul Anand",
