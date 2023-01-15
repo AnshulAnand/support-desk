@@ -22,11 +22,11 @@ if (process.env.NODE_ENV === 'production') {
   // Serve build folder as static
   app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-  app.get('*', (req, res) =>
-    res.sendFile(__dirname, '../', 'frontend', 'build', 'index.html')
-  )
+  app.get('*', (_, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+  })
 } else {
-  app.get('/', (req, res) => {
+  app.get('/', (_, res) => {
     res.status(200).json({ message: 'Welcome to the Support Desk API' })
   })
 }
