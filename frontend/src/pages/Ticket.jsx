@@ -8,7 +8,7 @@ import {
   getNotes,
   createNote,
   reset as notesReset,
-} from '../features/tickets/noteSlice'
+} from '../features/notes/noteSlice'
 import BackButton from '../components/BackButton'
 import NoteItem from '../components/NoteItem'
 import Spinner from '../components/Spinner'
