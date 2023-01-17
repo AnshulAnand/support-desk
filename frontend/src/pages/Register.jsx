@@ -56,6 +56,12 @@ function Register() {
       }
 
       dispatch(register(userData))
+        .unwrap()
+        .then(user => {
+          toast.success(`Registered new user - ${user.name}`)
+          navigate('/')
+        })
+        .catch(toast.error)
     }
   }
 

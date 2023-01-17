@@ -47,6 +47,12 @@ function Login() {
     const userData = { email, password }
 
     dispatch(login(userData))
+      .unwrap()
+      .then(user => {
+        toast.success(`Logged in as ${user.name}`)
+        navigate('/')
+      })
+      .catch(toast.error)
   }
 
   if (isLoading) return <Spinner />
