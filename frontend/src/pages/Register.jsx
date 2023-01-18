@@ -1,9 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
-import { register, reset } from '../features/auth/authSlice'
-import { FaUser } from 'react-icons/fa'
 import { toast } from 'react-toastify'
+import { FaUser } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import { register } from '../features/auth/authSlice'
 import Spinner from '../components/Spinner'
 
 function Register() {
@@ -19,22 +19,7 @@ function Register() {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const { user, isLoading, isError, isSuccess, message } = useSelector(
-    state => state.auth
-  )
-
-  useEffect(() => {
-    if (isError) {
-      toast.error(message)
-    }
-
-    // Redirect when logged in
-    if (isSuccess || user) {
-      navigate('/')
-    }
-
-    dispatch(reset())
-  }, [isError, isSuccess, user, message, navigate, dispatch])
+  const { isLoading } = useSelector(state => state.auth)
 
   const onChange = e => {
     setFormData(prevState => ({
@@ -73,10 +58,11 @@ function Register() {
     <>
       <section className='heading'>
         <h1>
-          <FaUser />
+          <FaUser /> Register
         </h1>
         <p>Please create an account</p>
       </section>
+
       <section className='form'>
         <form onSubmit={onSubmit}>
           <div className='form-group'>
@@ -90,6 +76,8 @@ function Register() {
               placeholder='Enter your name'
               required
             />
+          </div>
+          <div className='form-group'>
             <input
               type='email'
               className='form-control'
@@ -100,6 +88,8 @@ function Register() {
               placeholder='Enter your email'
               required
             />
+          </div>
+          <div className='form-group'>
             <input
               type='password'
               className='form-control'
@@ -107,9 +97,11 @@ function Register() {
               name='password'
               value={password}
               onChange={onChange}
-              placeholder='Enter your password'
+              placeholder='Enter password'
               required
             />
+          </div>
+          <div className='form-group'>
             <input
               type='password'
               className='form-control'
@@ -117,13 +109,17 @@ function Register() {
               name='password2'
               value={password2}
               onChange={onChange}
-              placeholder='Confirm your password'
+              placeholder='Confirm password'
               required
             />
+          </div>
+          <div className='form-group'>
+            <button className='btn btn-block'>Submit</button>
           </div>
         </form>
       </section>
     </>
   )
 }
+
 export default Register

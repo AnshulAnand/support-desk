@@ -7,8 +7,8 @@ function NoteItem({ note }) {
     <div
       className='note'
       style={{
-        backgroundColor: note.isStaff ? 'rgba(0,0,0,0.7)' : '#FFF',
-        color: note.isStaff ? '#FFF' : '#000',
+        backgroundColor: note.isStaff ? 'rgba(0,0,0,0.7)' : '#fff',
+        color: note.isStaff ? '#fff' : '#000',
       }}
     >
       <h4>
@@ -21,4 +21,5 @@ function NoteItem({ note }) {
     </div>
   )
 }
+
 export default NoteItem
